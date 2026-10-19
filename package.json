@@ -1,0 +1,16 @@
+{
+  "name": "daniil-komisarov-ki-2023-lpnu-ua",
+  "version": "1.0.0",
+  "description": "Minimal Hello World JavaScript project",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^30.2.0"
+  }
+}
