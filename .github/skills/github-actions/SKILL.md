@@ -12,7 +12,7 @@
 
 1. Створити структуру каталогів `.github/workflows/`.
 2. Створити файл `ci.yml`.
-3. Налаштувати запуск workflow на події `push` та `pull_request` у гілках `master` та `develop`.
+3. Налаштувати запуск workflow на події `push` та `pull_request` у гілках `main` та `develop`.
 4. Налаштувати одну `job` із стратегією `matrix` для `ubuntu-latest`, `windows-latest` та `macos-latest`.
 5. Додати кроки: checkout коду, налаштування Node.js, `npm ci` (або `npm install`) та `npm test`.
 
