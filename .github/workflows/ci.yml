@@ -15,16 +15,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        include:
-          - os: ubuntu-latest
-            shell: bash
-            script: bash ci.sh
-          - os: windows-latest
-            shell: cmd
-            script: ci.bat
-          - os: macos-latest
-            shell: bash
-            script: bash ci.sh
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
 
     steps:
       - name: Checkout repository
@@ -34,6 +28,11 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      - name: Run CI script
-        run: ${{ matrix.script }}
-        shell: ${{ matrix.shell }}
+      - name: Run Windows CI script
+        if: runner.os == 'Windows'
+        shell: cmd
+        run: ci.bat
+      - name: Run Unix CI script
+        if: runner.os != 'Windows'
+        shell: bash
+        run: bash ci.sh

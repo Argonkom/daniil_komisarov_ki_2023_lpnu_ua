@@ -15,7 +15,7 @@
 2. Налаштувати запуск workflow на події `push` і `pull_request` у гілки `develop` та `master`.
 3. Створити одну job із matrix для `ubuntu-latest`, `windows-latest` та `macos-latest`.
 4. Додати кроки checkout і setup-node.
-5. Запускати `ci.bat` із `shell: cmd` на Windows, а `bash ci.sh` із `shell: bash` на Linux та macOS.
+5. Додати два умовні кроки запуску: `ci.bat` із `shell: cmd` для Windows і `bash ci.sh` із `shell: bash` для Linux та macOS. Не використовувати `matrix` у полі `shell`.
 
 ## Очікуваний результат
 
@@ -30,4 +30,4 @@
 
 ## Типовий сценарій помилки
 
-Невалідний YAML, неправильна назва CI-скрипту або відсутня ОС у matrix. Дія: повідомити про конкретну помилку конфігурації та виправити відповідний файл.
+Невалідний YAML, неправильна назва CI-скрипту або відсутня ОС у matrix. GitHub Actions також відхилить workflow, якщо контекст `matrix` використано в полі `shell` (наприклад, `shell: ${{ matrix.shell }}`). Дія: використовувати фіксовані `shell: cmd` і `shell: bash` у двох кроках із умовами на `runner.os`, повідомити про конкретну помилку конфігурації та виправити відповідний файл.
