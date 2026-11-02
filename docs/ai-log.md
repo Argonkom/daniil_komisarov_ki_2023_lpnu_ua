@@ -51,3 +51,9 @@ CI-матриця містить ubuntu-latest, windows-latest, macos-latest.
 
 **Запит:** @workspace Повторно виконай команду check.
 **Відповідь AI:** Команду check виконано успішно, усі перевірки пройдено.
+
+## 6. Приведення CI у відповідність до методички
+
+**Запит:** @workspace Ти — Build Engineer AI-агент (.github/agents/build-engineer.agent.md). За методичкою ci.yml повинен лише запускати скрипти ci.bat (Windows) та ci.sh (Linux/macOS), які самі встановлюють залежності і запускають тести. Зроби таке: 1. Онови .github/skills/github-actions/SKILL.md: workflow запускається на push і pull_request у гілки develop та master; одна job з matrix ubuntu-latest, windows-latest, macos-latest; кроки — checkout, setup-node, запуск ci.bat (shell: cmd) на Windows або bash ci.sh на Linux/macOS. Збережи розділи: призначення, вхідні дані, дії, очікуваний результат, перевірки, типовий сценарій помилки. 2. Створи в корені репозиторію ci.bat і ci.sh: npm ci, потім npm test, завершення з ненульовим кодом при помилці. 3. Створи .gitattributes з правилами "_.sh text eol=lf" та "_.bat text eol=crlf". 4. Онови .github/workflows/ci.yml відповідно до оновленого skill. 5. Онови .github/prompts/create-actions.prompt.md: очікувані файли — ci.yml, ci.bat, ci.sh. 6. У tests/index.test.js перейменуй describe на "BasicAddition", перевірки не змінюй. 7. Після цього виконай команду check.
+**Відповідь AI:** Оновлено skill github-actions, створено ci.bat, ci.sh і .gitattributes, ci.yml тепер лише запускає ці скрипти, тест перейменовано на BasicAddition. Команда check виконана успішно.
+**Рішення:** Файли переглянуто, для ci.sh перевірено кінці рядків LF. Зміни прийнято. GitHub Actions пройшли на трьох ОС.
