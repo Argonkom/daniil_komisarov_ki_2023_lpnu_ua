@@ -3,12 +3,12 @@ name: CI
 on:
   push:
     branches:
-      - main
       - develop
+      - master
   pull_request:
     branches:
-      - main
       - develop
+      - master
 
 jobs:
   test:
@@ -28,7 +28,11 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      - name: Install dependencies
-        run: npm ci
-      - name: Run tests
-        run: npm test
+      - name: Run Windows CI script
+        if: runner.os == 'Windows'
+        shell: cmd
+        run: ci.bat
+      - name: Run Unix CI script
+        if: runner.os != 'Windows'
+        shell: bash
+        run: bash ci.sh

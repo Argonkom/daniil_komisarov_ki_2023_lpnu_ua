@@ -6,12 +6,24 @@
 
 ## Дії
 
-Викликати skill `github-actions` для генерації файлу `.github/workflows/ci.yml`.
+Викликати skill `github-actions` для генерації workflow і CI-скриптів.
 
-## Очікуваний результат
+## Очікуваний результат (файли)
 
-Створено коректний YAML файл для GitHub Actions з матрицею ОС (Windows, Linux, macOS).
+Створено коректні файли:
+
+- `.github/workflows/ci.yml`
+- `ci.bat`
+- `ci.sh`
+
+Workflow запускається на Windows, Linux та macOS для гілок `develop` і `master`, а встановлення залежностей і тести виконуються CI-скриптами.
+
+## Команди перевірки
+
+- Перевірити наявність `.github/workflows/ci.yml`, `ci.bat` і `ci.sh`.
+- Перевірити тригерні гілки та matrix для Windows, Linux і macOS.
+- Перевірити умовні кроки запуску `ci.bat` і `bash ci.sh`.
 
 ## Повідомлення про помилку
 
-"Помилка: Не вдалося створити конфігурацію CI/CD."
+"Помилка: Не вдалося створити конфігурацію CI/CD або необхідні CI-скрипти."
